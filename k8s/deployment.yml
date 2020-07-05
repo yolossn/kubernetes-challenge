@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: kubernetes-challenge
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: node-js-server
+  template:
+    metadata:
+      labels:
+        app: node-js-server
+      namespace: kubernetes-challenge
+    spec:
+      containers:
+        - name: backend-server
+          image: kube-challenge:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 4000
+              name: backend
+          env:
+            - name: NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: name-config
+                  key: name
