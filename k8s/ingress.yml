@@ -6,7 +6,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
   labels:
-    app: wordpress
+    app: node-server
 spec:
   rules:
     - host: test.yolossn.com
